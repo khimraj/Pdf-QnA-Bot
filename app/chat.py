@@ -22,7 +22,7 @@ def chat_with_pdf(vector_store, user_input):
         else:
             docsearch = vector_store.similarity_search(query=user_input, k=1)
             print(docsearch)
-            llm = OpenAI(model='gpt-3.5-turbo')
+            llm = OpenAI()
             chain = load_qa_chain(llm=llm, chain_type="stuff")
             with get_openai_callback() as cb:
                 response = chain.run(input_documents=docsearch, question=user_query)
